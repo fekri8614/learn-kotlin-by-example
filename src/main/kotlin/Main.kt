@@ -9,3 +9,5 @@
 fun main() {
     // Write your code here
 }
+
+// Start from other activities!
