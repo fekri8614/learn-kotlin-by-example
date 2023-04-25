@@ -1,14 +1,14 @@
 package collections
 
 /** [Collections ( >List)](https://play.kotlinlang.org/byExample/04_functional/02_Lambdas) */
-val systemUser: MutableList<Int> = mutableListOf(1, 2, 3)
-val sudoers : List<Int> = systemUser
+private val systemUser: MutableList<Int> = mutableListOf(1, 2, 3)
+private val sudoers : List<Int> = systemUser
 
-fun addSystemUser(newUser: Int) {
+private fun addSystemUser(newUser: Int) {
     systemUser.add(newUser)
 }
 
-fun getSysSudoers(): List<Int> {
+private fun getSysSudoers(): List<Int> {
     return sudoers
 }
 
