@@ -6,6 +6,4 @@
  * [@fekri86114](https://github.com/fekri86114)
  * */
 
-fun main() {
-    readln()
-}
+fun main() {}
