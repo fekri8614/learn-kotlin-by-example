@@ -12,7 +12,6 @@ private fun main() {
     val passwords = listOf<Int>(1234, 5678, 9123)
 
     // define the variables that are going to get inputs from user.
-
     print("Hello!\nPlease, enter your name and password: \n")
     print("Name: ")
     val personName = readln()
@@ -29,8 +28,7 @@ private fun main() {
             println("Hello, ${persons[0]}!") // Hello, Zahra!
             println("What do you wanna do for today?")
             println("Here's what you can do:\n1. add money\n2. get money\n3. look how much you have")
-            val todo = readln()
-            when (todo) {
+            when (readln()) {
                 "1" -> {
                     println("how much do you wanna add?")
                     val addedMoney = readln().toDouble()
@@ -57,8 +55,7 @@ private fun main() {
             println("Hello, ${persons[1]}!") // Hello, Amir!
             println("What do you wanna do for today?")
             println("Here's what you can do:\n1. add money\n2. get money\n3. look how much you have")
-            val todo = readln()
-            when (todo) {
+            when (readln()) {
                 "1" -> {
                     println("how much do you wanna add?")
                     val addedMoney = readln().toDouble()
@@ -85,8 +82,7 @@ private fun main() {
             println("Hello, ${persons[2]}!") // Hello, Mahan!
             println("What do you wanna do for today?")
             println("Here's what you can do:\n1. add money\n2. get money\n3. look how much you have")
-            val todo = readln()
-            when (todo) {
+            when (readln()) {
                 "1" -> {
                     println("how much do you wanna add?")
                     val addedMoney = readln().toDouble()
