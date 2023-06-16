@@ -1,4 +1,3 @@
-
 /**
  * Kotlin programming practice.
  *
