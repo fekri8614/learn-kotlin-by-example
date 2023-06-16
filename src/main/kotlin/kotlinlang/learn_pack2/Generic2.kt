@@ -1,34 +1,29 @@
 package kotlinlang.learn_pack2
 
-fun main() {
-
-    val frequentSender = messages
-        .groupBy(Message::sender)
-        .maxByOrNull { (_, message) -> message.size }
-        ?.key
-    println(frequentSender)
-
-    val senders = messages
-        .asSequence()
-        .filter { it.body.isNotBlank() && !it.isRead }
-        .map(Message::sender)
-        .distinct()
-        .sorted()
-        .toList()
-    println(senders)
-
-    throw (Exception().message ?: "") as Throwable
-
+abstract class SomeClasses<T> {
+    abstract fun execute(): T
 }
 
-data class Message(                                           // Create a data class
-    val sender: String,
-    val body: String,
-    val isRead: Boolean = false,                              // Provide a default value for the argument
-)
+class SomeImplementation: SomeClasses<String>() {
+    override fun execute(): String = "Test"
+}
 
-val messages = listOf(                                        // Create a list
-    Message("Ma", "Hey! Where are you?"),
-    Message("Adam", "Everything going according to plan today?"),
-    Message("Ma", "Please reply. I've lost you!"),
-)
+class OtherImplementation: SomeClasses<Int>() {
+    override fun execute(): Int = 42
+}
+
+object Runner {
+    inline fun <reified S: SomeClasses<T>, T> run(): T {
+        return S::class.java.getDeclaredConstructor().newInstance().execute()
+    }
+}
+
+fun main() {
+
+    val s= Runner.run<SomeImplementation, _>()
+    assert(s == "Test")
+
+    val n = Runner.run<OtherImplementation, _>()
+    assert(n == 22)
+
+}
