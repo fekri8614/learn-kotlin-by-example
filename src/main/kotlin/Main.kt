@@ -1,3 +1,4 @@
+
 /**
  * Kotlin programming practice.
  *
@@ -6,4 +7,6 @@
  * [@fekri86114](https://github.com/fekri86114)
  * */
 
-fun main() {}
+fun main() {
+
+}
