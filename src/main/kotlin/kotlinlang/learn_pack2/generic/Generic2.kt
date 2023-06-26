@@ -1,4 +1,4 @@
-package kotlinlang.learn_pack2
+package kotlinlang.learn_pack2.generic
 
 abstract class SomeClasses<T> {
     abstract fun execute(): T

@@ -1,4 +1,4 @@
-package kotlinlang.learn_pack2
+package kotlinlang.learn_pack2.generic
 
 private inline fun <reified A, reified B> Pair<*, *>.asPairOf(): Pair<A, B>? {
     if (first !is A || second !is B) return null
