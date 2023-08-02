@@ -3,16 +3,17 @@ package kotlinlang.learn_pack2.flow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-fun simple(): Flow<Int> = flow {
-    println("Flow started")
-    for (i in 1..3) {
-        delay(100)
-        println("Emitting $i")
-        emit(i)
-    }
+suspend fun performRequest(request: Int) : String {
+    delay(100)
+    return "response $request"
 }
 
 private fun main() = runBlocking {
-    (1..3).asFlow().collect { value -> println(value) }
+    (1..3).asFlow()
+        .transform { request ->
+            emit("Making request $request")
+            emit(performRequest(request))
+        }
+        .collect { response -> println(response) }
 }
 
