@@ -5,6 +5,8 @@ package kotlinlang.learn_pack2.flow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import javax.naming.Context
+import kotlin.system.measureTimeMillis
+import kotlin.time.measureTime
 
 private fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
 
@@ -14,10 +16,18 @@ private fun simple(): Flow<Int> = flow {
         log("emitting $i")
         emit(i)
     }
-}.flowOn(Dispatchers.Default)
+}
 
 
 private fun main() = runBlocking {
-    simple().collect { value -> log("Collected $value") }
+    val time = measureTimeMillis {
+        simple()
+            .buffer()
+            .collect { value ->
+            delay(300)
+            println(value)
+        }
+    }
+    println("Collected in $time ms")
 }
 
