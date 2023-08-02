@@ -9,16 +9,15 @@ import javax.naming.Context
 private fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
 
 private fun simple(): Flow<Int> = flow {
-    log("Started simple flow")
     for (i in 1..3) {
+        Thread.sleep(100)
+        log("emitting $i")
         emit(i)
     }
-}
+}.flowOn(Dispatchers.Default)
 
 
 private fun main() = runBlocking {
-    withContext(coroutineContext) {
-        simple().collect { value -> log("Collected $value") }
-    }
+    simple().collect { value -> log("Collected $value") }
 }
 
