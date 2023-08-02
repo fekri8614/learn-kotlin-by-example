@@ -1,6 +1,8 @@
 package kotlinlang.learn_pack1.collections
 
-/** [Collections ( >associateBy, groupBy](https://play.kotlinlang.org/byExample/05_Collections/10_associateBy) */
+/** 
+ * [Collections ( >associateBy, groupBy](https://play.kotlinlang.org/byExample/05_Collections/10_associateBy)
+ */
 fun main() {
 
     data class Person(val name: String, val city: String, val phone: String)
