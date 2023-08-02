@@ -5,16 +5,17 @@ package kotlinlang.learn_pack2.flow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
+private fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+
+private fun simple(): Flow<Int> = flow {
+    log("Started simple flow")
+    for (i in 1..3) {
+        emit(i)
+    }
+}
+
+
 private fun main() = runBlocking {
-    (1..5).asFlow()
-        .filter {
-            println("filter $it")
-            it % 2 == 0
-        }.map {
-            println("Map $it")
-            "string $it"
-        }.collect {
-            println("Collect $it")
-        }
+    simple().collect { value -> log("Collected $value") }
 }
 
