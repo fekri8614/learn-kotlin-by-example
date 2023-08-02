@@ -3,17 +3,22 @@ package kotlinlang.learn_pack2.flow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-suspend fun performRequest(request: Int) : String {
-    delay(100)
-    return "response $request"
+fun numbers(): Flow<Int> = flow {
+    try {
+        emit(1)
+        emit(2)
+        println("this line will not execute")
+        emit(3)
+    }catch (e: Exception) {
+        println("ERROR:--> $e")
+    } finally {
+        println("Finally in numbers")
+    }
 }
 
 private fun main() = runBlocking {
-    (1..3).asFlow()
-        .transform { request ->
-            emit("Making request $request")
-            emit(performRequest(request))
-        }
-        .collect { response -> println(response) }
+    numbers()
+        .take(2)
+        .collect { value -> println(value) }
 }
 
