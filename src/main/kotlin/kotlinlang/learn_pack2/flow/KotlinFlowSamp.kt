@@ -4,9 +4,15 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 private fun main() = runBlocking {
-    val sum = (1..5).asFlow()
-        .map { it * it }
-        .reduce { a, b -> a + b }
-    println(sum)
+    (1..5).asFlow()
+        .filter {
+            println("filter $it")
+            it % 2 == 0
+        }.map {
+            println("Map $it")
+            "string $it"
+        }.collect {
+            println("Collect $it")
+        }
 }
 
