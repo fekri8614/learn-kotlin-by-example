@@ -4,6 +4,7 @@ package kotlinlang.learn_pack2.flow
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import javax.naming.Context
 
 private fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
 
@@ -16,6 +17,8 @@ private fun simple(): Flow<Int> = flow {
 
 
 private fun main() = runBlocking {
-    simple().collect { value -> log("Collected $value") }
+    withContext(coroutineContext) {
+        simple().collect { value -> log("Collected $value") }
+    }
 }
 
