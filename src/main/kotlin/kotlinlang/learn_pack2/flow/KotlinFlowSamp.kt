@@ -13,9 +13,6 @@ fun simple(): Flow<Int> = flow {
 }
 
 private fun main() = runBlocking {
-    withTimeoutOrNull(250) {
-        simple().collect { value -> println(value) }
-    }
-    println("Done!")
+    (1..3).asFlow().collect { value -> println(value) }
 }
 
