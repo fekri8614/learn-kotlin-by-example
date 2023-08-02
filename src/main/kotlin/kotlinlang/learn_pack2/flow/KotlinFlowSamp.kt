@@ -1,5 +1,7 @@
 package kotlinlang.learn_pack2.flow
 
+// Start from https://kotlinlang.org/docs/flow.html
+
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
