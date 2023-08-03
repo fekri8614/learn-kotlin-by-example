@@ -8,12 +8,9 @@ import javax.naming.Context
 import kotlin.system.measureTimeMillis
 import kotlin.time.measureTime
 
-private fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
-
 private fun simple(): Flow<Int> = flow {
     for (i in 1..3) {
         Thread.sleep(100)
-        log("emitting $i")
         emit(i)
     }
 }
@@ -22,10 +19,10 @@ private fun simple(): Flow<Int> = flow {
 private fun main() = runBlocking {
     val time = measureTimeMillis {
         simple()
-            .buffer()
-            .collect { value ->
-            delay(300)
-            println(value)
+            .collectLatest { value ->
+            println("Collecting $value")
+                delay(300)
+                println("Done!")
         }
     }
     println("Collected in $time ms")
