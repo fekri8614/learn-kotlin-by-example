@@ -17,13 +17,9 @@ private fun simple(): Flow<Int> = flow {
 
 
 private fun main() = runBlocking {
-    val time = measureTimeMillis {
-        simple()
-            .collectLatest { value ->
-            println("Collecting $value")
-                delay(300)
-                println("Done!")
-        }
-    }
-    println("Collected in $time ms")
+    val nums = (1..3).asFlow()
+    val strs = flowOf("one", "two", "three")
+    nums.zip(strs) { a, b -> "$a -> $b" }
+        .collect { println(it) }
 }
+
