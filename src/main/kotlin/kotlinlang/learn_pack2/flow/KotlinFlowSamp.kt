@@ -8,18 +8,13 @@ import javax.naming.Context
 import kotlin.system.measureTimeMillis
 import kotlin.time.measureTime
 
-private fun simple(): Flow<Int> = flow {
-    for (i in 1..3) {
-        Thread.sleep(100)
-        emit(i)
-    }
-}
-
-
 private fun main() = runBlocking {
-    val nums = (1..3).asFlow()
-    val strs = flowOf("one", "two", "three")
-    nums.zip(strs) { a, b -> "$a -> $b" }
-        .collect { println(it) }
+    val nums = (1..3).asFlow().onEach { delay(300) }
+    val strs = flowOf("one", "two", "three").onEach { delay(400) }
+    val startTime = System.currentTimeMillis()
+    nums.combine(strs) { a, b -> "$a ~ $b" }
+        .collect { value ->
+            println("$value at ${System.currentTimeMillis() - startTime} ms from start")
+        }
 }
 
