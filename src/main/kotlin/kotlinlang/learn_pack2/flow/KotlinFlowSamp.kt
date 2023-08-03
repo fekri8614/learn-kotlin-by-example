@@ -30,4 +30,3 @@ private fun main() = runBlocking {
     }
     println("Collected in $time ms")
 }
-
